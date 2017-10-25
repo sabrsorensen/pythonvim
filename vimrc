@@ -29,10 +29,21 @@ Plugin 'nvie/vim-flake8'
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'vim-airline/vim-airline'
+Plugin 'airblade/vim-gitgutter'
+"Plugin 'Townk/vim-autoclose' " TODO auto-insert closing punctuation
+"Plugin 'ryanoasis/vim-devicons' " TODO NERDTRee icons
+"Plugin 'janko-m/vim-test' " TODO launch tests from vim
+"Plugin 'tpope/vim-dispatch' " TODO asynchronous compilers
+"Plugin 'Shougo/deoplete.nvim' " Interesting replacement for YCM? Check out Neovim?
+"Plugin 'gilsondev/searchtasks.vim' " TODO to search for TODOs
+"Plugin 'benmills/vimux' " TODO for tmux mini-pane
+"Plugin 'godlygeek/tabular' " TODO autoalign text
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -88,6 +99,7 @@ let g:mapleader = " "
 nmap <leader>w :w!<cr>
 nmap <leader>q :q<cr>
 nmap <leader>x :wq!<cr>
+nmap <leader>r :source $MYVIMRC<cr>
 
 " Show docstrings of folded code:
 let g:SimpylFold_docstring_preview=1
@@ -109,8 +121,8 @@ let NERDTreeIgnore=['\.pyc$', '\~$']
 " Auto-open NERDTree if no files are specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" Use <F3> to toggle NERDTree
-map <F3> :NERDTreeToggle<CR>
+" Use <F7> to toggle NERDTree
+map <F7> :NERDTreeToggle<CR>
 " Close vim if NERDTree is the only open window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -118,6 +130,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 set number
 " Set <F5> to toggle line numbers
 nnoremap <F5> :set nonumber!<CR>
+" Enable highlighting of the current line
+set cursorline
+set cursorcolumn
 
 " New lines copy the previous line's indentation
 set autoindent
@@ -147,7 +162,7 @@ set showcmd
 " Enhanced command-line completion
 set wildmenu
 " Tab-complete to longest common match, second press will list matches
-set wildmode=longest,list:longest
+set wildmode=list:longest,full
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc,*.hi
 
@@ -184,10 +199,15 @@ set colorcolumn=110
 
 " Set status line to include Paste status, current directory, modification
 " time, etc
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ CWD:%r%{getcwd()}%h\ [Mod\ Time:\ %{strftime(\"%H:%M:%S\",getftime(expand(\"\%\%\")))}]
+" vim-airline replaces the statusline
+" set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ CWD:%r%{getcwd()}%h\ [Mod\ Time:\ %{strftime(\"%H:%M:%S\",getftime(expand(\"\%\%\")))}]
+set laststatus=2
 
 " Enable mouse usage
 set mouse=a
+
+" Tagbar configuration
+nmap <F8> :TagbarToggle<CR>
 
 " YouCompleteMe semantic completion
 " Using http://www.alexeyshmalko.com/2014/youcompleteme-ultimate-autocomplete-plugin-for-vim/
@@ -205,12 +225,15 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " <leader>g to jump to definition or declaration
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+" vim-airline configuration
+let g:airline_powerline_fonts = 0
 
 " Syntastic settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 1
 let g:syntastic_aggregrate_errors = 1
 let g:syntastic_enable_balloons = 1
 let g:syntastic_enable_highlighting = 1
@@ -228,8 +251,9 @@ let g:syntastic_cpp_include_dirs = [ '../inc/', '../lib/', 'inc', 'lib' ]
 " Disabling PyLint until the configuration can be determined
 let g:syntastic_python_checkers = ['flake8']
 " E501: line length greater than 79 chars
+" E221: multiple spaces after operator
 " E203: Whitespace preceeding :
-let g:syntastic_python_flake8_args='--ignore=E501,E203'
+let g:syntastic_python_flake8_args='--ignore=E501,E203,E221'
 "let g:syntastic_python_pylint_args='--module-rgx="([a-z]+[A-Z]+\\w+)+"'
 
 
