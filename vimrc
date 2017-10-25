@@ -35,13 +35,13 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'airblade/vim-gitgutter'
-"Plugin 'Townk/vim-autoclose' " TODO auto-insert closing punctuation
-"Plugin 'ryanoasis/vim-devicons' " TODO NERDTRee icons
+Plugin 'Townk/vim-autoclose'
+Plugin 'ryanoasis/vim-devicons' " TODO Need to fix icons in PuTTY
+Plugin 'benmills/vimux' " Use VimuxRunCommand to run shell commands in a mini-tmux pane
+Plugin 'sabrsorensen/searchtasks.vim' " Search for TODO, FIXME, and XXX in comments
 "Plugin 'janko-m/vim-test' " TODO launch tests from vim
 "Plugin 'tpope/vim-dispatch' " TODO asynchronous compilers
 "Plugin 'Shougo/deoplete.nvim' " Interesting replacement for YCM? Check out Neovim?
-"Plugin 'gilsondev/searchtasks.vim' " TODO to search for TODOs
-"Plugin 'benmills/vimux' " TODO for tmux mini-pane
 "Plugin 'godlygeek/tabular' " TODO autoalign text
 
 
@@ -125,6 +125,9 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <F7> :NERDTreeToggle<CR>
 " Close vim if NERDTree is the only open window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Replace the default symbols with something more PuTTY friendly.
+let g:NERDTreeDirArrowExpandable="+"
+let g:NERDTreeDirArrowCollapsible="~"
 
 " Show line numbers
 set number
