@@ -43,6 +43,7 @@ Plugin 'sabrsorensen/searchtasks.vim' " Search for TODO, FIXME, and XXX in comme
 "Plugin 'tpope/vim-dispatch' " TODO asynchronous compilers
 "Plugin 'Shougo/deoplete.nvim' " Interesting replacement for YCM? Check out Neovim?
 "Plugin 'godlygeek/tabular' " TODO autoalign text
+"Plugin 'jeetsukumaran/vim-buffergator' " TODO I don't buffer enough, but this looks nifty
 
 
 " All of your Plugins must be added before the following line
