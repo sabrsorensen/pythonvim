@@ -66,7 +66,9 @@ set background=dark
 " Set terminal colors to 256
 set t_Co=256
 if has('gui_running')
-  colorscheme solarized
+    "Turns out I like zenburn more
+    "colorscheme solarized
+    colorscheme zenburn
 else
   colorscheme zenburn
 endif
