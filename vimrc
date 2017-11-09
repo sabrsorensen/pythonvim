@@ -26,8 +26,6 @@ Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
 Plugin 'nvie/vim-flake8'
-Plugin 'jnurmine/Zenburn'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
@@ -39,11 +37,16 @@ Plugin 'Townk/vim-autoclose'
 Plugin 'ryanoasis/vim-devicons' " TODO Need to fix icons in PuTTY
 Plugin 'benmills/vimux' " Use VimuxRunCommand to run shell commands in a mini-tmux pane
 Plugin 'sabrsorensen/searchtasks.vim' " Search for TODO, FIXME, and XXX in comments
-"Plugin 'janko-m/vim-test' " TODO launch tests from vim
+Plugin 'janko-m/vim-test' " TODO launch tests from vim
 "Plugin 'tpope/vim-dispatch' " TODO asynchronous compilers
 "Plugin 'Shougo/deoplete.nvim' " Interesting replacement for YCM? Check out Neovim?
 "Plugin 'godlygeek/tabular' " TODO autoalign text
 "Plugin 'jeetsukumaran/vim-buffergator' " TODO I don't buffer enough, but this looks nifty
+
+
+" Colorschemes/graphical tweaks
+Plugin 'jnurmine/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
 
 
 " All of your Plugins must be added before the following line
